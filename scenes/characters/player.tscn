@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_xxx"]
+[ext_resource type="Script" path="res://scripts/components/health_component.gd" id="2_xxx"]
+[ext_resource type="Script" path="res://scripts/components/hurtbox_component.gd" id="3_xxx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_phys"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hurt"]
+radius = 6.0
+height = 14.0
+
+[node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_xxx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_phys")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_xxx")
+
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+script = ExtResource("3_xxx")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_hurt")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
