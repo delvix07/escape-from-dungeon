@@ -1,37 +1,43 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene format=3 uid="uid://cocsl0lrcmdnk"]
 
-[ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_xxx"]
-[ext_resource type="Script" path="res://scripts/components/health_component.gd" id="2_xxx"]
-[ext_resource type="Script" path="res://scripts/components/hurtbox_component.gd" id="3_xxx"]
+[ext_resource type="Script" uid="uid://p7ugvikny5wd" path="res://scripts/characters/player.gd" id="1_xxx"]
+[ext_resource type="Texture2D" uid="uid://1jywe14mtsrq" path="res://assets/Tiles/tile_0088.png" id="2_dyp2m"]
+[ext_resource type="Script" uid="uid://ecd1s4o4rrxj" path="res://scripts/components/health_component.gd" id="2_xxx"]
+[ext_resource type="Script" uid="uid://c33a7fppbnk4q" path="res://scripts/components/hurtbox_component.gd" id="3_xxx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_phys"]
-radius = 5.0
-height = 10.0
+radius = 3.0
+height = 6.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hurt"]
-radius = 6.0
-height = 14.0
+radius = 4.0
+height = 12.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=1230168109]
 y_sort_enabled = true
 collision_layer = 2
-collision_mask = 1
 script = ExtResource("1_xxx")
+speed = 100.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2136352432]
+position = Vector2(0, -3)
+texture = ExtResource("2_dyp2m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=121082890]
 shape = SubResource("CapsuleShape2D_phys")
 
-[node name="HealthComponent" type="Node" parent="."]
+[node name="HealthComponent" type="Node" parent="." unique_id=345783249]
 script = ExtResource("2_xxx")
 
-[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1728372354 node_paths=PackedStringArray("health_component")]
+visible = false
 script = ExtResource("3_xxx")
 health_component = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1609951303]
+position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_hurt")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1035113449]
 position_smoothing_enabled = true
+position_smoothing_speed = 20.0

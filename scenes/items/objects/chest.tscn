@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c7tjgo1w7wcj8"]
+
+[ext_resource type="Script" uid="uid://dckq3qocjubop" path="res://scripts/items/cofre.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cbvvh7q01hm8r" path="res://assets/Tiles/tile_0089.png" id="2_tex"]
+[ext_resource type="AudioStream" uid="uid://bmggq7wdijdcm" path="res://assets/sounds/chest_open.mp3" id="3_78nsf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chest"]
+size = Vector2(32, 32)
+
+[node name="Chest" type="Node2D" unique_id=766267067 node_paths=PackedStringArray("sprite", "area_interaccion", "sonido_abrir")]
+script = ExtResource("1_script")
+sprite = NodePath("Sprite")
+area_interaccion = NodePath("AreaInteraccion")
+sonido_abrir = NodePath("SonidoAbrir")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1020955986]
+texture = ExtResource("2_tex")
+
+[node name="AreaInteraccion" type="Area2D" parent="." unique_id=2124670147]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaInteraccion" unique_id=1193100312]
+shape = SubResource("RectangleShape2D_chest")
+
+[node name="SonidoAbrir" type="AudioStreamPlayer2D" parent="." unique_id=143292399]
+stream = ExtResource("3_78nsf")
