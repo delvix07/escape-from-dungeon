@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/items/item_data.gd" id="1_x8qvw"]
+[ext_resource type="Texture2D" path="res://assets/Tiles/tile_0104.png" id="2_a8e6h"]
+[ext_resource type="AudioStream" path="res://assets/sounds/pick_weapon.mp3" id="3_yq7qg"]
+
+[resource]
+script = ExtResource("1_x8qvw")
+item_name = "Espada"
+description = "Una espada simple."
+texture = ExtResource("2_a8e6h")
+item_type = 0
+pickup_sound = ExtResource("3_yq7qg")

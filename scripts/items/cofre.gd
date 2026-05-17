@@ -1,9 +1,19 @@
 class_name CofreItem
 extends Node2D
 
+## Textura o Sprite del cofre
 @export var sprite: Sprite2D
+## Área que detecta al jugador
 @export var area_interaccion: Area2D
+## Sonido al abrir la tapa
 @export var sonido_abrir: AudioStreamPlayer2D
+
+## El objeto que contiene el cofre. Si está vacío, no mostrará nada.
+@export var content: ItemData
+
+## Señal emitida localmente cuando el cofre se abre.
+## Útil para disparar eventos en el nivel (ej. aparecer enemigo).
+signal chest_opened()
 
 var _abierto: bool = false
 var _jugador_cerca: bool = false
@@ -28,7 +38,7 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Solo permitimos abrir si el jugador está cerca, el cofre está cerrado 
-	# y presiona el botón de acción (asumiendo que se llama "interactuar" o puedes cambiarlo al nombre de tu input)
+	# y presiona el botón de acción
 	if _jugador_cerca and not _abierto and event.is_action_pressed("interactuar"):
 		get_viewport().set_input_as_handled()
 		abrir_cofre()
@@ -41,9 +51,12 @@ func abrir_cofre() -> void:
 	if sonido_abrir:
 		sonido_abrir.play()
 		
-	# Aquí puedes emitir una señal si quieres que el cofre suelte loot, por ejemplo:
-	# loot_dropped.emit()
 	print("¡Cofre abierto!")
+	
+	chest_opened.emit()
+	
+	if content:
+		GameEvents.show_item_popup.emit(content)
 
 func _on_body_entered(body: Node2D) -> void:
 	# Validamos que el cuerpo sea el jugador

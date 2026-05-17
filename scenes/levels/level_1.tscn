@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://d37dnm66a27aa" path="res://scripts/puzzles/ventana_interactiva.gd" id="4_x42e6"]
 [ext_resource type="AudioStream" uid="uid://b1w8vi32uljv3" path="res://assets/sounds/error_sound.mp3" id="5_6761a"]
 [ext_resource type="AudioStream" uid="uid://keobvu2fjpec" path="res://assets/sounds/unlock.mp3" id="5_sk5k4"]
+[ext_resource type="Texture2D" uid="uid://btf4t0o7ftkca" path="res://assets/action_message.png" id="6_s8va5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8r0xb"]
 texture = ExtResource("1_ksju7")
@@ -366,6 +367,11 @@ audio_player = NodePath("../UnlockSoundPlayer")
 position = Vector2(71, -6)
 shape = SubResource("RectangleShape2D_oc4kc")
 
+[node name="Sprite2D" type="Sprite2D" parent="Calabozo/ButtonPuzzleManager/button1" unique_id=844089482]
+position = Vector2(75, -13)
+scale = Vector2(0.008, 0.008)
+texture = ExtResource("6_s8va5")
+
 [node name="button2" type="Area2D" parent="Calabozo/ButtonPuzzleManager" unique_id=586962790 node_paths=PackedStringArray("audio_player")]
 script = ExtResource("4_x42e6")
 ventana_id = 2
@@ -374,6 +380,11 @@ audio_player = NodePath("../UnlockSoundPlayer")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Calabozo/ButtonPuzzleManager/button2" unique_id=731214609]
 position = Vector2(103, -6)
 shape = SubResource("RectangleShape2D_s8va5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Calabozo/ButtonPuzzleManager/button2" unique_id=1996982657]
+position = Vector2(105.99999, -13)
+scale = Vector2(0.008, 0.008)
+texture = ExtResource("6_s8va5")
 
 [node name="button3" type="Area2D" parent="Calabozo/ButtonPuzzleManager" unique_id=1001957222 node_paths=PackedStringArray("audio_player")]
 script = ExtResource("4_x42e6")
@@ -384,6 +395,11 @@ audio_player = NodePath("../UnlockSoundPlayer")
 position = Vector2(134, -6)
 shape = SubResource("RectangleShape2D_dga24")
 
+[node name="Sprite2D" type="Sprite2D" parent="Calabozo/ButtonPuzzleManager/button3" unique_id=78511082]
+position = Vector2(137, -13)
+scale = Vector2(0.008, 0.008)
+texture = ExtResource("6_s8va5")
+
 [node name="button4" type="Area2D" parent="Calabozo/ButtonPuzzleManager" unique_id=886751888 node_paths=PackedStringArray("audio_player")]
 script = ExtResource("4_x42e6")
 ventana_id = 4
@@ -392,6 +408,11 @@ audio_player = NodePath("../UnlockSoundPlayer")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Calabozo/ButtonPuzzleManager/button4" unique_id=39687116]
 position = Vector2(164, -6)
 shape = SubResource("RectangleShape2D_qxy0u")
+
+[node name="Sprite2D" type="Sprite2D" parent="Calabozo/ButtonPuzzleManager/button4" unique_id=182797507]
+position = Vector2(168, -13)
+scale = Vector2(0.008, 0.008)
+texture = ExtResource("6_s8va5")
 
 [node name="ErrorSoundPlayer" type="AudioStreamPlayer" parent="Calabozo/ButtonPuzzleManager" unique_id=1292599338]
 stream = ExtResource("5_6761a")

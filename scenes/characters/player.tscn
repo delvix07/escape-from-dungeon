@@ -19,7 +19,9 @@ collision_layer = 2
 script = ExtResource("1_xxx")
 speed = 100.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2136352432]
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals" unique_id=2136352432]
 position = Vector2(0, -3)
 texture = ExtResource("2_dyp2m")
 
