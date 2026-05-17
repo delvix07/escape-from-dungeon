@@ -3,6 +3,7 @@ extends Node2D
 
 @export var secuencia_correcta: Array[int] = [2,4,3,1]
 @export var escena_premio: PackedScene
+@export var contenido_premio: ItemData
 @export var sonido_error: AudioStreamPlayer
 @export var posicion_premio: Node2D
 
@@ -41,6 +42,10 @@ func _completar_puzzle() -> void:
 	if escena_premio:
 		var premio: Node = escena_premio.instantiate()
 		
+		# Inyectamos el ítem configurado si el premio lo soporta
+		if "content" in premio and contenido_premio != null:
+			premio.content = contenido_premio
+		
 		# Determinamos dónde va a aparecer el premio
 		var spawn_pos: Vector2 = global_position
 		if posicion_premio:
@@ -64,12 +69,21 @@ func _fallar_puzzle() -> void:
 		
 	# Reseteamos el progreso del puzzle
 	_indice_actual = 0
+	_resetear_ventanas(self)
+
+func _resetear_ventanas(nodo: Node) -> void:
+	for hijo in nodo.get_children():
+		if hijo is VentanaInteractiva:
+			hijo.resetear()
+		elif hijo.get_child_count() > 0:
+			_resetear_ventanas(hijo)
 
 func _desconectar_ventanas(nodo: Node) -> void:
 	# Útil para cuando el puzzle ya ha sido resuelto y no quieres
 	# que se siga interactuando o disparando la lógica
 	for hijo in nodo.get_children():
 		if hijo is VentanaInteractiva:
+			hijo.desactivar_permanentemente()
 			if hijo.ventana_presionada.is_connected(_on_ventana_presionada):
 				hijo.ventana_presionada.disconnect(_on_ventana_presionada)
 		elif hijo.get_child_count() > 0:
