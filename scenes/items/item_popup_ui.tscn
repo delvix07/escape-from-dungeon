@@ -1,16 +1,18 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://ifkshcq6ptel"]
 
-[ext_resource type="Script" path="res://scripts/items/item_popup_ui.gd" id="1_popup"]
+[ext_resource type="Script" uid="uid://kvn7pi3tg5k8" path="res://scripts/items/item_popup_ui.gd" id="1_popup"]
 
 [node name="ItemPopupUI" type="CanvasLayer" unique_id=1743860319]
-script = ExtResource("1_popup")
 process_mode = 3
+script = ExtResource("1_popup")
 
 [node name="Control" type="Control" parent="." unique_id=676193584]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Background" type="ColorRect" parent="Control" unique_id=1061500694]
 layout_mode = 0
@@ -19,11 +21,18 @@ anchor_bottom = 1.0
 color = Color(0, 0, 0, 0.7)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1278727936]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -72.5
+offset_right = 94.0
+offset_bottom = 72.5
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
 [node name="Icon" type="TextureRect" parent="Control/VBoxContainer" unique_id=1805246582]
@@ -33,17 +42,21 @@ stretch_mode = 5
 
 [node name="NameLabel" type="Label" parent="Control/VBoxContainer" unique_id=68660154]
 layout_mode = 2
+theme_override_font_sizes/font_size = 12
 text = "Item Name"
 horizontal_alignment = 1
 
 [node name="DescriptionLabel" type="Label" parent="Control/VBoxContainer" unique_id=516714409]
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "Description here..."
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="HintLabel" type="Label" parent="Control/VBoxContainer" unique_id=899465267]
 modulate = Color(1, 1, 1, 0.5)
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "Press Action to continue"
 horizontal_alignment = 1
 

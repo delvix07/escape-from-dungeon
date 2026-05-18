@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://c6khmraswcmoa"]
+
+[ext_resource type="PackedScene" uid="uid://fo8le0sehg7x" path="res://scenes/items/sword.tscn" id="1_580ar"]
+[ext_resource type="Script" uid="uid://bf6p1xsn288me" path="res://scripts/items/item_data.gd" id="1_x8qvw"]
+[ext_resource type="Texture2D" uid="uid://dfx63pvm52jam" path="res://assets/Tiles/tile_0104.png" id="2_a8e6h"]
+[ext_resource type="AudioStream" uid="uid://dinymborsif5d" path="res://assets/sounds/pick_weapon.mp3" id="3_yq7qg"]
+
+[resource]
+script = ExtResource("1_x8qvw")
+item_name = "Espada"
+description = "Una eUna compañía adecuada para escapar del calabozo"
+texture = ExtResource("2_a8e6h")
+item_scene = ExtResource("1_580ar")
+item_type = 0
+pickup_sound = ExtResource("3_yq7qg")

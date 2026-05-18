@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameEvents="*uid://u5wh6r1pyx8a"
+ItemPopupUI="*res://scenes/items/item_popup_ui.tscn"
 
 [display]
 

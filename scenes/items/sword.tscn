@@ -1,7 +1,7 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://fo8le0sehg7x"]
 
-[ext_resource type="Script" path="res://scripts/items/weapon.gd" id="1_i5ed0"]
-[ext_resource type="Texture2D" path="res://assets/Tiles/tile_0104.png" id="2_l3uod"]
+[ext_resource type="Script" uid="uid://cta7xt102t0mi" path="res://scripts/items/weapon.gd" id="1_i5ed0"]
+[ext_resource type="Texture2D" uid="uid://dfx63pvm52jam" path="res://assets/Tiles/tile_0104.png" id="2_l3uod"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gj357"]
 size = Vector2(8, 20)

@@ -33,4 +33,10 @@ Para colocar una reja que desaparece cuando muere un enemigo específico:
 1. Arrastra el manager al nivel.
 2. Configura el array `Secuencia Correcta` en el Inspector.
 3. Agrega nodos `VentanaInteractiva` como *hijos* del manager. El script se conectará automáticamente a ellos.
-4. Asigna la `Escena Premio` (ej: un cofre) que aparecerá al completar la secuencia.
+4. Asigna la `Escena Premio` (ej: la escena genérica de un cofre) que aparecerá al completar la secuencia.
+5. **NUEVO:** Asigna en `Contenido Premio` un recurso de tipo `ItemData` (ej: espada.tres). El manager inyectará automáticamente este ítem dentro del cofre al ganar el puzzle.
+
+**Comportamiento de las Ventanas:**
+* Al presionar una ventana, su cartel (`prompt_sprite`) se oculta y no se puede volver a presionar en el mismo intento.
+* Si el jugador falla la secuencia, todas las ventanas se reinician y vuelven a estar disponibles.
+* Si la secuencia es correcta, todas las ventanas se desactivan de forma permanente y ya no muestran carteles.

@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c7tjgo1w7wcj8" path="res://scenes/items/objects/chest.tscn" id="4_oc4kc"]
 [ext_resource type="Script" uid="uid://d37dnm66a27aa" path="res://scripts/puzzles/ventana_interactiva.gd" id="4_x42e6"]
 [ext_resource type="AudioStream" uid="uid://b1w8vi32uljv3" path="res://assets/sounds/error_sound.mp3" id="5_6761a"]
+[ext_resource type="Resource" path="res://resources/items/sword.tres" id="5_dga24"]
 [ext_resource type="AudioStream" uid="uid://keobvu2fjpec" path="res://assets/sounds/unlock.mp3" id="5_sk5k4"]
 [ext_resource type="Texture2D" uid="uid://dj62lbfgydpu7" path="res://assets/action_message_scaled.png" id="6_s8va5"]
 
@@ -355,6 +356,7 @@ tile_set = SubResource("TileSet_owrb5")
 [node name="ButtonPuzzleManager" type="Node2D" parent="Calabozo" unique_id=973050513 node_paths=PackedStringArray("sonido_error", "posicion_premio")]
 script = ExtResource("3_nsrm0")
 escena_premio = ExtResource("4_oc4kc")
+contenido_premio = ExtResource("5_dga24")
 sonido_error = NodePath("ErrorSoundPlayer")
 posicion_premio = NodePath("PosicionPremio")
 

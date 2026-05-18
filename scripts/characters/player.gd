@@ -35,12 +35,9 @@ func _on_weapon_equipped(item: ItemData) -> void:
 	if current_weapon:
 		current_weapon.queue_free()
 		
-	# For now we specifically load Sword.tscn since it's the only one
-	# In the future, ItemData could have a reference to its PackedScene
-	if item.item_name == "Espada" or item.item_name == "Sword":
-		var sword_scene = load("res://scenes/items/sword.tscn")
-		if sword_scene:
-			current_weapon = sword_scene.instantiate()
-			# Add slightly offset so it looks like it's in the hand
-			current_weapon.position = Vector2(8, 0)
-			$Visuals.add_child(current_weapon)
+	# Instanciamos la escena asociada a este ItemData
+	if item.item_scene:
+		current_weapon = item.item_scene.instantiate()
+		# Add slightly offset so it looks like it's in the hand
+		current_weapon.position = Vector2(8, 0)
+		$Visuals.add_child(current_weapon)

@@ -10,6 +10,9 @@ extends Resource
 ## The visual representation of the item.
 @export var texture: Texture2D
 
+## The actual scene to instantiate when equipped.
+@export var item_scene: PackedScene
+
 enum ItemType {
 	WEAPON,
 	SHIELD,
