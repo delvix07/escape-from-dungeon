@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cta7xt102t0mi" path="res://scripts/items/weapon.gd" id="1_i5ed0"]
 [ext_resource type="Texture2D" uid="uid://dfx63pvm52jam" path="res://assets/Tiles/tile_0104.png" id="2_l3uod"]
+[ext_resource type="Script" path="res://scripts/components/hitbox_component.gd" id="3_hitbox"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gj357"]
 size = Vector2(8, 20)
@@ -48,6 +49,7 @@ offset = Vector2(0, -10)
 [node name="Hitbox" type="Area2D" parent="." unique_id=1325734086]
 collision_layer = 4
 collision_mask = 8
+script = ExtResource("3_hitbox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1819621166]
 position = Vector2(0, -10)

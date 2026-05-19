@@ -17,9 +17,9 @@ height = 12.0
 y_sort_enabled = true
 collision_layer = 2
 script = ExtResource("1_xxx")
-speed = 100.0
+speed = 70.0
 
-[node name="Visuals" type="Node2D" parent="."]
+[node name="Visuals" type="Node2D" parent="." unique_id=19973838]
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals" unique_id=2136352432]
 position = Vector2(0, -3)

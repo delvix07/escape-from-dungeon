@@ -6,9 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://c7tjgo1w7wcj8" path="res://scenes/items/objects/chest.tscn" id="4_oc4kc"]
 [ext_resource type="Script" uid="uid://d37dnm66a27aa" path="res://scripts/puzzles/ventana_interactiva.gd" id="4_x42e6"]
 [ext_resource type="AudioStream" uid="uid://b1w8vi32uljv3" path="res://assets/sounds/error_sound.mp3" id="5_6761a"]
-[ext_resource type="Resource" path="res://resources/items/sword.tres" id="5_dga24"]
+[ext_resource type="Resource" uid="uid://c6khmraswcmoa" path="res://resources/items/sword.tres" id="5_dga24"]
 [ext_resource type="AudioStream" uid="uid://keobvu2fjpec" path="res://assets/sounds/unlock.mp3" id="5_sk5k4"]
 [ext_resource type="Texture2D" uid="uid://dj62lbfgydpu7" path="res://assets/action_message_scaled.png" id="6_s8va5"]
+[ext_resource type="Script" uid="uid://txgb5x68nnpj" path="res://scripts/levels/enemy_spawner.gd" id="10_excbq"]
+[ext_resource type="PackedScene" uid="uid://duo4ostxl7vkg" path="res://scenes/characters/rat.tscn" id="11_iav0o"]
+[ext_resource type="PackedScene" uid="uid://cuobhex554b50" path="res://scenes/levels/dungeon_grate.tscn" id="12_iav0o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8r0xb"]
 texture = ExtResource("1_ksju7")
@@ -159,12 +162,13 @@ separation = Vector2i(1, 1)
 1:0/0 = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(2.081009, 1.0900526, 8, 0.8918619, 8, 8, 2.081009, 8)
 2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0.7708225, 8, 0.7708225, 8, 7.1429615, -8, 6.7318554)
 3:0/0 = 0
 3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0.3963833, -1.8828182, 0.49547863, -2.1801052, 8, -8, 8)
 4:0/0 = 0
-4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0.49547863, 8, 0.8918619, 8, 8, -8, 8)
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2.8263512, 8, -8, 8, -8, -2.620799, 8, -3.0319042, 8, 1.0791531, -2.9291286, 0.9763756)
 5:0/0 = 0
-5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0.49547863, 8, 0.8918619, 8, 8, -8, 8)
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(2.5180225, 1.0791531, -8, 0.7708225, -8, -2.620799, 8, -3.0319042, 8, 1.0791531, 8, 8, 2.3124695, 8)
 6:0/0 = 0
 7:0/0 = 0
 7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -178,7 +182,7 @@ separation = Vector2i(1, 1)
 11:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:1/0 = 0
 1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 2.2482338, -8, 8, -8, 8, 8, -8, 8)
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(2.3124695, -8, 8, -8, 8, 8, 2.1069164, 8)
 2:1/0 = 0
 3:1/0 = 0
 3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -2.428093, -8, -2.2482338, 8, -8, 8)
@@ -202,11 +206,12 @@ separation = Vector2i(1, 1)
 11:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:2/0 = 0
 1:2/0 = 0
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(2.3124695, -8, 8, -4.0596685, 8, -0.35971832, 2.415245, -0.35971832)
 2:2/0 = 0
 2:2/0/y_sort_origin = 3
 2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.5855312, 8, -1.7837219, 8, 0.8918619, -8, 0.8918619)
 3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -2.8263521, -2.209694, -8, -2.1069164, -0.051387787, -8, 0.15416527)
 4:2/0 = 0
 4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:2/0 = 0
@@ -268,8 +273,14 @@ separation = Vector2i(1, 1)
 2:6/0 = 0
 3:6/0 = 0
 4:6/0 = 0
+4:6/0/y_sort_origin = 2
+4:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.15416527, 8, 0.35971642, 8, 8, -8, 8)
 5:6/0 = 0
+5:6/0/y_sort_origin = 2
+5:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.15416527, 8, 0.35971642, 8, 8, -8, 8)
 6:6/0 = 0
+6:6/0/y_sort_origin = 2
+6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.15416527, 8, 0.35971642, 8, 8, -8, 8)
 7:6/0 = 0
 8:6/0 = 0
 9:6/0 = 0
@@ -352,13 +363,15 @@ tile_map_data = PackedByteArray("AAAAAP//AAAEAAMAAAABAP//AAAEAAMAAAACAP//AAAEAAM
 tile_set = SubResource("TileSet_owrb5")
 
 [node name="Calabozo" type="Node2D" parent="." unique_id=422192088]
+y_sort_enabled = true
 
-[node name="ButtonPuzzleManager" type="Node2D" parent="Calabozo" unique_id=973050513 node_paths=PackedStringArray("sonido_error", "posicion_premio")]
+[node name="ButtonPuzzleManager" type="Node2D" parent="Calabozo" unique_id=973050513 node_paths=PackedStringArray("sonido_error", "posicion_premio", "spawners_al_abrir")]
 script = ExtResource("3_nsrm0")
 escena_premio = ExtResource("4_oc4kc")
 contenido_premio = ExtResource("5_dga24")
 sonido_error = NodePath("ErrorSoundPlayer")
 posicion_premio = NodePath("PosicionPremio")
+spawners_al_abrir = [NodePath("../RatSpawner")]
 
 [node name="button1" type="Area2D" parent="Calabozo/ButtonPuzzleManager" unique_id=1035735189 node_paths=PackedStringArray("prompt_sprite", "audio_player")]
 script = ExtResource("4_x42e6")
@@ -425,3 +438,13 @@ stream = ExtResource("5_sk5k4")
 
 [node name="PosicionPremio" type="Marker2D" parent="Calabozo/ButtonPuzzleManager" unique_id=1583587649]
 position = Vector2(55, 41)
+
+[node name="RatSpawner" type="Marker2D" parent="Calabozo" unique_id=268012363]
+position = Vector2(214, 41)
+script = ExtResource("10_excbq")
+enemy_scene = ExtResource("11_iav0o")
+spawn_delay = 2.0
+
+[node name="DungeonGrate" parent="Calabozo" unique_id=1938415134 instance=ExtResource("12_iav0o")]
+position = Vector2(152, 125)
+spawner_triggers = [NodePath("../RatSpawner")]

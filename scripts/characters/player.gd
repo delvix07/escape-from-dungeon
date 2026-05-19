@@ -6,6 +6,7 @@ var inventory: InventoryManager
 func _ready() -> void:
 	super._ready()
 	y_sort_enabled = true
+	add_to_group("player")
 	
 	inventory = InventoryManager.new()
 	add_child(inventory)
@@ -39,5 +40,5 @@ func _on_weapon_equipped(item: ItemData) -> void:
 	if item.item_scene:
 		current_weapon = item.item_scene.instantiate()
 		# Add slightly offset so it looks like it's in the hand
-		current_weapon.position = Vector2(8, 0)
+		current_weapon.position = Vector2(8, 4)
 		$Visuals.add_child(current_weapon)

@@ -6,6 +6,7 @@ extends Node2D
 @export var contenido_premio: ItemData
 @export var sonido_error: AudioStreamPlayer
 @export var posicion_premio: Node2D
+@export var spawners_al_abrir: Array[EnemySpawner] = []
 
 var _indice_actual: int = 0
 
@@ -45,6 +46,12 @@ func _completar_puzzle() -> void:
 		# Inyectamos el ítem configurado si el premio lo soporta
 		if "content" in premio and contenido_premio != null:
 			premio.content = contenido_premio
+			
+		# Si el premio puede ser abierto (ej: cofre), conectamos los spawners
+		if premio.has_signal("chest_opened"):
+			for spawner in spawners_al_abrir:
+				if spawner:
+					premio.chest_opened.connect(spawner.spawn)
 		
 		# Determinamos dónde va a aparecer el premio
 		var spawn_pos: Vector2 = global_position

@@ -1,16 +1,19 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cuobhex554b50"]
 
-[ext_resource type="Script" path="res://scripts/environment/dungeon_grate.gd" id="1_lqonn"]
-[ext_resource type="Texture2D" path="res://assets/Tiles/tile_0077.png" id="2_xqnar"]
+[ext_resource type="Script" uid="uid://dbtj6bd3bdn68" path="res://scripts/environment/dungeon_grate.gd" id="1_lqonn"]
+[ext_resource type="Texture2D" uid="uid://5xovehvjqdun" path="res://assets/Tiles/tile_0077.png" id="2_xqnar"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_un65c"]
-size = Vector2(16, 16)
+size = Vector2(16, 8)
 
 [node name="DungeonGrate" type="StaticBody2D" unique_id=1938415134]
+y_sort_enabled = true
 script = ExtResource("1_lqonn")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1600788483]
+position = Vector2(0, -5)
 texture = ExtResource("2_xqnar")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=54244389]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_un65c")

@@ -1,14 +1,24 @@
 extends StaticBody2D
 
-## NodePath to the enemy that triggers this grate to open (disappear)
-@export var enemy_trigger: NodePath
+## Lista de Spawners que deben ser completados (todos sus enemigos destruidos) para abrir la reja
+@export var spawner_triggers: Array[EnemySpawner]
+
+var _enemies_expected: int = 0
+var _enemies_defeated: int = 0
 
 func _ready() -> void:
-	if not enemy_trigger.is_empty():
-		var enemy = get_node(enemy_trigger)
-		if enemy and enemy.has_signal("died"):
-			enemy.died.connect(_on_enemy_died)
+	for spawner in spawner_triggers:
+		if spawner:
+			_enemies_expected += 1
+			spawner.spawned_node_freed.connect(_on_enemy_defeated)
+			
+	# Si configuramos el array vacio por error o sin spawners validos, no hacemos nada (queda cerrada)
+	# O podríamos abrirla directamente, pero mejor dejarla cerrada para que el diseñador note el error.
 
-func _on_enemy_died() -> void:
-	# Simply disappear when the target enemy dies
+func _on_enemy_defeated() -> void:
+	_enemies_defeated += 1
+	if _enemies_defeated >= _enemies_expected:
+		open()
+
+func open() -> void:
 	queue_free()

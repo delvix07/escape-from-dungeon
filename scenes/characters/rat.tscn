@@ -1,9 +1,10 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://duo4ostxl7vkg"]
 
-[ext_resource type="Script" path="res://scripts/characters/rat.gd" id="1_d0uui"]
-[ext_resource type="Texture2D" path="res://assets/Tiles/tile_0108.png" id="2_qbqcy"]
-[ext_resource type="Script" path="res://scripts/components/hurtbox_component.gd" id="3_7vg2a"]
-[ext_resource type="Script" path="res://scripts/components/health_component.gd" id="4_agn0m"]
+[ext_resource type="Script" uid="uid://b24rnos7bry5q" path="res://scripts/characters/rat.gd" id="1_d0uui"]
+[ext_resource type="Texture2D" uid="uid://cd3bkw24mp0g3" path="res://assets/Tiles/tile_0123.png" id="2_d0uui"]
+[ext_resource type="Script" uid="uid://c33a7fppbnk4q" path="res://scripts/components/hurtbox_component.gd" id="3_7vg2a"]
+[ext_resource type="Script" uid="uid://ecd1s4o4rrxj" path="res://scripts/components/health_component.gd" id="4_agn0m"]
+[ext_resource type="Script" uid="uid://dgx14vcb6r4yy" path="res://scripts/components/hitbox_component.gd" id="5_hitbox"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sgqwd"]
 radius = 6.0
@@ -14,11 +15,13 @@ size = Vector2(16, 16)
 [node name="Rat" type="CharacterBody2D" unique_id=1768035822 node_paths=PackedStringArray("health_component")]
 collision_layer = 4
 script = ExtResource("1_d0uui")
-speed = 50.0
+speed = 45.0
 health_component = NodePath("HealthComponent")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1166377410]
-texture = ExtResource("2_qbqcy")
+[node name="Visuals" type="Node2D" parent="." unique_id=1261664990]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals" unique_id=1166377410]
+texture = ExtResource("2_d0uui")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1934486220]
 shape = SubResource("CircleShape2D_sgqwd")
@@ -30,6 +33,13 @@ script = ExtResource("3_7vg2a")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1555711895]
+shape = SubResource("RectangleShape2D_xpbwg")
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=1286608618]
+collision_layer = 0
+script = ExtResource("5_hitbox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1286608619]
 shape = SubResource("RectangleShape2D_xpbwg")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1303989182]
