@@ -72,3 +72,26 @@ Si quieres armar la típica emboscada donde al tomar la espada de un cofre (lueg
    * Selecciona "Assign" o arrastra tu nodo `EnemySpawner` hacia ese espacio.
    
 **Resultado en el juego:** El jugador resuelve el puzzle. Aparece el cofre. El jugador abre el cofre, recibe la espada y el juego se pausa mostrando el cartel de "Has conseguido una Espada". El contador de la trampa *aún no ha empezado*. Cuando el jugador presiona interactuar para cerrar el cartel y equiparse la espada, el juego se reanuda y 1 segundo después... ¡aparece la rata en la ubicación marcada!
+
+## 6. Iluminación y Sombras (Dynamic 2D Lighting)
+**Nodos Clave:** `CanvasModulate`, `PointLight2D`, `LightOccluder2D`
+
+El sistema de visión (o "Line of Sight") funciona oscureciendo la pantalla y permitiendo que ciertas entidades la iluminen:
+
+1. **Oscuridad Global:** El nodo `CanvasModulate` en el nivel (ej. `level_1.tscn`) tiñe todo de gris oscuro (`Color(0.12, 0.12, 0.12)`).
+2. **Fuentes de Luz:** El jugador tiene un `PointLight2D` configurado con una `GradientTexture2D`. Esto perfora la oscuridad del `CanvasModulate`.
+3. **Sombras:** Al activar `shadow_enabled = true` en la luz, los obstáculos en el nivel bloquean la luz.
+
+### Guía Paso a Paso: Configurar Sombras en las Paredes (TileMapLayer) en Godot 4.6
+
+Para que las paredes bloqueen la luz del jugador y proyecten sombras realistas, debes configurar *Light Occluders* en el conjunto de tiles (TileSet):
+
+1. **Abre tu escena del nivel** (ej: `level_1.tscn`) y selecciona el nodo `TileMapWalls` (de tipo `TileMapLayer`).
+2. En el panel inferior de Godot, haz clic en la pestaña **TileSet** (asegúrate de no estar en "TileMap").
+3. En las opciones de la derecha (Inspector), asegúrate de que tu `TileSet` tenga habilitada una capa de **Occlusion Layer**. 
+   * *Si no la tiene:* Haz clic en la propiedad `TileSet`, despliega **Occlusion Layers**, haz clic en "Add Element" (Agregar elemento). Deja el valor de "Light Mask" en 1.
+4. Vuelve a la pestaña inferior **TileSet**, haz clic en la sección **Paint** (Pintar) en la barra de herramientas del panel.
+5. En el menú desplegable "Paint Properties", selecciona **Occlusion Layer 0**.
+6. Abajo, en la cuadrícula de tus texturas, selecciona las paredes que quieres que bloqueen la luz.
+7. Haz clic en el Tile en el Tileset. Verás un polígono rojo o morado. Puedes usar las herramientas de la barra del TileSet (añadir puntos, borrar puntos, ajustar el cuadrado) para dibujar exactamente qué parte de ese Tile debe bloquear la luz.
+8. Una vez pintados, cualquier luz con `shadow_enabled = true` rebotará contra esas paredes generando una penumbra realista detrás.
