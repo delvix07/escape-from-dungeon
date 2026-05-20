@@ -445,6 +445,6 @@ script = ExtResource("10_excbq")
 enemy_scene = ExtResource("11_iav0o")
 spawn_delay = 2.0
 
-[node name="DungeonGrate" parent="Calabozo" unique_id=1938415134 instance=ExtResource("12_iav0o")]
+[node name="DungeonGrate" parent="Calabozo" unique_id=1938415134 node_paths=PackedStringArray("spawner_triggers") instance=ExtResource("12_iav0o")]
 position = Vector2(152, 125)
 spawner_triggers = [NodePath("../RatSpawner")]
