@@ -5,10 +5,12 @@ extends Node2D
 @export var escena_premio: PackedScene
 @export var contenido_premio: ItemData
 @export var sonido_error: AudioStreamPlayer
+@export var sonido_exito: AudioStreamPlayer
 @export var posicion_premio: Node2D
 @export var spawners_al_abrir: Array[EnemySpawner] = []
 
 var _indice_actual: int = 0
+var _secuencia_actual_valida: bool = true
 
 func _ready() -> void:
 	# Nos conectamos recursivamente a todas las VentanaInteractiva hijas
@@ -23,23 +25,30 @@ func _conectar_ventanas(nodo: Node) -> void:
 			_conectar_ventanas(hijo)
 
 func _on_ventana_presionada(id: int) -> void:
-	# Si la secuencia está vacía o el puzzle ya terminó, no hacemos nada
-	if secuencia_correcta.is_empty():
+	# Si la secuencia está vacía o el puzzle ya terminó (o estamos en el delay), no hacemos nada
+	if secuencia_correcta.is_empty() or _indice_actual >= secuencia_correcta.size():
 		return
 		
 	# Verificamos si el ID presionado coincide con el paso actual de la secuencia
-	if id == secuencia_correcta[_indice_actual]:
-		_indice_actual += 1
+	if id != secuencia_correcta[_indice_actual]:
+		_secuencia_actual_valida = false
 		
-		# Si completamos toda la secuencia
-		if _indice_actual >= secuencia_correcta.size():
+	_indice_actual += 1
+	
+	# Si completamos la cantidad de pasos de la secuencia
+	if _indice_actual >= secuencia_correcta.size():
+		await get_tree().create_timer(1.0).timeout
+		if _secuencia_actual_valida:
 			_completar_puzzle()
-	else:
-		_fallar_puzzle()
+		else:
+			_fallar_puzzle()
 
 func _completar_puzzle() -> void:
 	print("Puzzle de secuencia completado!")
 	
+	if sonido_exito:
+		sonido_exito.play()
+		
 	if escena_premio:
 		var premio: Node = escena_premio.instantiate()
 		
@@ -76,6 +85,7 @@ func _fallar_puzzle() -> void:
 		
 	# Reseteamos el progreso del puzzle
 	_indice_actual = 0
+	_secuencia_actual_valida = true
 	_resetear_ventanas(self)
 
 func _resetear_ventanas(nodo: Node) -> void:
