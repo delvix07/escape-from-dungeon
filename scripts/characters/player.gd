@@ -3,6 +3,9 @@ extends Humanoid
 
 var inventory: InventoryManager
 
+@export var walk_frequency: float = 15.0
+@export var walk_amplitude: float = 12.0
+
 func _ready() -> void:
 	super._ready()
 	y_sort_enabled = true
@@ -23,6 +26,12 @@ func _physics_process(_delta: float) -> void:
 		$Visuals.scale.x = 1
 	elif direction.x < 0:
 		$Visuals.scale.x = -1
+		
+	# Procedural walk animation
+	if velocity.length() > 0:
+		$Visuals/Sprite2D.rotation_degrees = sin(Time.get_ticks_msec() * 0.001 * walk_frequency) * walk_amplitude
+	else:
+		$Visuals/Sprite2D.rotation_degrees = lerp($Visuals/Sprite2D.rotation_degrees, 0.0, 15.0 * _delta)
 		
 	move_and_slide()
 
